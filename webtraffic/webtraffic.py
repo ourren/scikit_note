@@ -31,10 +31,8 @@ def main():
     # plt.grid()
     # plt.show()
 
-    fp1, residuals, rank, sv, rcond = sp.polyfit(x, y, 1, full=True)
-    print(fp1)
-    f1 = sp.poly1d(fp1)
-    fx = sp.linspace(0, x[-1], 1000)
+
+    # init
     plt.scatter(x, y)
     plt.title("Web traffic over the last month")
     plt.xlabel("Time")
@@ -42,8 +40,28 @@ def main():
     plt.xticks([w * 7 * 24 for w in range(10)], ['week %i' % w for w in range(10)])
     plt.autoscale(tight=True)
     plt.grid()
-    plt.plot(fx, f1(fx), linewidth=4)
-    plt.legend(["d=%i" % f1.order], loc="upper left")
+
+
+    # 1d
+    fp1, residuals, rank, sv, rcond = sp.polyfit(x, y, 1, full=True)
+    print(fp1)
+    f1 = sp.poly1d(fp1)
+    fx = sp.linspace(0, x[-1], 1000)
+    plt.plot(fx, f1(fx), linewidth=4, c='m')
+
+    # 3d
+    f3 = sp.poly1d(sp.polyfit(x, y, 3))
+    plt.plot(x, f3(x), linewidth=4, c='g')
+
+    f5 = sp.poly1d(sp.polyfit(x, y, 5))
+    plt.plot(x, f5(x), linewidth=4, c='k')
+
+    f10 = sp.poly1d(sp.polyfit(x, y, 10))
+    plt.plot(x, f10(x), linewidth=4, c='r')
+
+    plt.legend(["d=%i" % m for m in [1, 3, 5, 10]], loc="upper left")
+
+
     plt.show()
 
 

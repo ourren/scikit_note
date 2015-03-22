@@ -10,7 +10,6 @@ from random import shuffle
 from sklearn.svm import LinearSVC
 from nltk.classify.scikitlearn import SklearnClassifier
 from sklearn.metrics import classification_report
-from sklearn.pipeline import Pipeline
 
 def dialogue_act_features(sentence):
     """

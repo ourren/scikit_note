@@ -37,8 +37,8 @@ def gaussiannb():
 
 def main():
     print 'enter main...'
-    # test()
-    gaussiannb()
+    test()
+    #gaussiannb()
 
 if __name__ == "__main__":
     main()
